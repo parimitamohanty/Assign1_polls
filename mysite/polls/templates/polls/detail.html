@@ -1,12 +1,17 @@
-<h1>{{ question.question_text }}</h1>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+ <h1 align="center" style="color:deeppink">{{ question.question_text }}</h1>
 
-<form action="{% url 'polls:vote' question.id %}" method="post">
+{% if error_message %}<p align="center" style="color:deeppink" ><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form align="center" action="{% url 'polls:vote' question.id %}" method="post">
 {% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+<h1 align="center">
+{%  for choice in question.choice_set.all %}
+    <input align="center" type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label align="center" style="color:deeppink" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
 {% endfor %}
-<input type="submit" value="Vote">
+<h1 align="center"><input style="color:deeppink" type="submit" value="Vote"></h1>
+</h1>
 </form>
